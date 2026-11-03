@@ -184,3 +184,4 @@ class EntityExtractor:
         return {"entities": enriched_entities, "relationships": enriched_rels}
 
 entity_extractor = EntityExtractor()
+

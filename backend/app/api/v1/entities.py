@@ -106,3 +106,4 @@ async def resolve_entity_duplicate(
         modified_state={"resolved_canonical_id": req.target_canonical_id}
     )
     return {"status": "SUCCESS", "review_id": review.id}
+

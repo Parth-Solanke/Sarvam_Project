@@ -104,3 +104,4 @@ class VerificationService:
         return review
 
 verification_service = VerificationService()
+

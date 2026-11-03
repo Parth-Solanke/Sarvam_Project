@@ -155,3 +155,4 @@ class ReportResponse(BaseModel):
     generated_at: datetime
     markdown_content: str
     citations: List[Dict[str, Any]] = []
+

@@ -110,3 +110,4 @@ async def get_audit_log(limit: int = 50, db: AsyncSession = Depends(get_db)):
         }
         for a in records
     ]
+

@@ -133,3 +133,4 @@ class SignalAnomaly(Base):
     metrics_json = Column(Text, default="{}")
     verification_status = Column(String(50), default="UNVERIFIED")  # UNVERIFIED, VERIFIED, DISPUTED, REJECTED
     created_at = Column(DateTime, default=lambda: datetime.now(timezone.utc))
+

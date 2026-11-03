@@ -110,3 +110,4 @@ class MultilingualService:
         return chunks
 
 multilingual_service = MultilingualService()
+

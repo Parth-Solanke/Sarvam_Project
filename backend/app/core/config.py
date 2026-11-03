@@ -45,3 +45,4 @@ settings = Settings()
 
 # Ensure local storage directory exists
 Path(settings.STORAGE_DIR).mkdir(parents=True, exist_ok=True)
+

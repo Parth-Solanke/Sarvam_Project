@@ -76,3 +76,4 @@ async def seed_initial_data(db: AsyncSession):
                 content=item["content"]
             )
             await ingest_source(req=req, db=db, current_user=analyst)
+

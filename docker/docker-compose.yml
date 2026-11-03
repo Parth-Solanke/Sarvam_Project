@@ -77,3 +77,4 @@ volumes:
   qdrant_data:
   minio_data:
   redis_data:
+

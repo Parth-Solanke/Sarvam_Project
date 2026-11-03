@@ -29,3 +29,4 @@ async def get_graph_communities():
     """Discover covert network clusters via Louvain modularity algorithm."""
     communities = await graph_store.get_communities()
     return {"communities": communities, "total_clusters": len(communities)}
+

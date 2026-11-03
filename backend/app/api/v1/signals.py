@@ -53,3 +53,4 @@ async def trigger_scan():
     """Trigger an on-demand statistical anomaly scan across the graph."""
     signals = await weak_signal_engine.run_analysis()
     return {"status": "SUCCESS", "detected_signals": len(signals), "signals": signals}
+
