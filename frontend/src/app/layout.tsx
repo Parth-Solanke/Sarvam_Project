@@ -3,8 +3,8 @@ import Sidebar from "@/components/Sidebar";
 import Navbar from "@/components/Navbar";
 
 export const metadata = {
-  title: "OSINT Fusion Workbench",
-  description: "Multilingual Multimodal Intelligence Analysis Platform",
+  title: "SarvOSINT Workbench",
+  description: "Multilingual Multimodal Intelligence Analysis Platform powered by Sarvam AI",
 };
 
 export default function RootLayout({
@@ -26,4 +26,3 @@ export default function RootLayout({
     </html>
   );
 }
-

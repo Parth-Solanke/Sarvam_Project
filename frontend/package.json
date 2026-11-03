@@ -1,5 +1,5 @@
 {
-  "name": "osint-fusion-workbench-frontend",
+  "name": "sarvosint-frontend",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -30,4 +30,3 @@
     "typescript": "^5.4.5"
   }
 }
-

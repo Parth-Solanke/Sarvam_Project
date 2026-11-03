@@ -11,7 +11,7 @@ if sys.stdout.encoding != "utf-8":
 def test_workflow():
     client = httpx.Client(base_url="http://127.0.0.1:8000/api/v1")
 
-    print("=== OSINT FUSION WORKBENCH END-TO-END VERIFICATION ===")
+    print("=== SARVOSINT END-TO-END VERIFICATION ===")
 
     # 1. Ingest New Multilingual Intelligence
     payload = {
@@ -63,4 +63,3 @@ def test_workflow():
 
 if __name__ == "__main__":
     test_workflow()
-

@@ -37,7 +37,7 @@ export default function Sidebar() {
             <ShieldAlert className="w-5 h-5" />
           </div>
           <div>
-            <h1 className="text-sm font-semibold tracking-wider text-workbench-text uppercase">OSINT Fusion</h1>
+            <h1 className="text-sm font-semibold tracking-wider text-workbench-text uppercase">SarvOSINT</h1>
             <p className="text-[10px] text-workbench-muted font-mono tracking-tight">Workbench v1.0.0</p>
           </div>
         </div>
@@ -77,4 +77,3 @@ export default function Sidebar() {
     </aside>
   );
 }
-

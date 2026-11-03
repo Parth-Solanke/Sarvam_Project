@@ -10,12 +10,12 @@ REPO_ROOT = BACKEND_DIR.parent
 ENV_FILE = BACKEND_DIR / ".env" if (BACKEND_DIR / ".env").exists() else REPO_ROOT / ".env"
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "OSINT Fusion Workbench"
+    PROJECT_NAME: str = "SarvOSINT"
     VERSION: str = "1.0.0"
     API_V1_STR: str = "/api/v1"
     
     # Security
-    SECRET_KEY: str = os.getenv("JWT_SECRET_KEY", "fusion-workbench-super-secure-jwt-key-2026")
+    SECRET_KEY: str = os.getenv("JWT_SECRET_KEY", "sarvosint-super-secure-jwt-key-2026")
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24  # 24 hours
     

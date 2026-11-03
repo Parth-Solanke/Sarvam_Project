@@ -1,4 +1,4 @@
-# 🛰️ OSINT Fusion Workbench
+# 🛰️ SarvOSINT
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![Next.js](https://img.shields.io/badge/Next.js-14.2-black.svg?logo=next.js&logoColor=white)](https://nextjs.org)
@@ -7,7 +7,7 @@
 [![Docker Compose](https://img.shields.io/badge/Docker%20Compose-Ready-2496ED.svg?logo=docker&logoColor=white)](https://docs.docker.com/compose/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-An Intelligence Community (IC) grade **Open-Source Intelligence (OSINT) Fusion Workbench** engineered for cross-border investigative workflows, multi-source ingestion, and Indic multilingual translation. Built with **Sarvam AI**, a resilient hybrid **Knowledge Graph engine (Neo4j / NetworkX)**, **Weak-Signal Analytics**, and a **Human-in-the-Loop (HITL) Verification Workflow** with immutable audit logging.
+An Intelligence Community (IC) grade **Open-Source Intelligence (OSINT) Fusion Platform** engineered for cross-border investigative workflows, multi-source ingestion, and Indic multilingual translation. Built with **Sarvam AI**, a resilient hybrid **Knowledge Graph engine (Neo4j / NetworkX)**, **Weak-Signal Analytics**, and a **Human-in-the-Loop (HITL) Verification Workflow** with immutable audit logging.
 
 ---
 
@@ -115,7 +115,7 @@ flowchart TD
 
 ```text
 Sarvam_Project/
-├── backend/                        # FastAPI Backend Application
+├── backend/                        # FastAPI Backend Application (SarvOSINT)
 │   ├── app/
 │   │   ├── api/v1/                 # REST API Route Controllers
 │   │   │   ├── auth.py             # Analyst login, token issuance, profile
@@ -130,7 +130,7 @@ Sarvam_Project/
 │   │   ├── core/
 │   │   │   ├── config.py           # Pydantic Settings & environment parsing
 │   │   │   ├── database.py         # Async SQLAlchemy & Hybrid Graph Store
-│   │   │   ├── security.py         # JWT tokens & password hashing (bcrypt)
+│   │   │   ├── security.py         # JWT tokens & password hashing (PBKDF2)
 │   │   │   └── seeder.py           # Initial analyst user & maritime intel seed
 │   │   ├── models/
 │   │   │   ├── schemas/schemas.py  # Pydantic input/output validation schemas
@@ -141,10 +141,10 @@ Sarvam_Project/
 │   │   │   ├── nlp/multilingual.py # Indic script detection & translation
 │   │   │   └── verification/workflow.py # HITL state transitions & audit log
 │   │   └── main.py                 # FastAPI initialization, CORS, lifespan
-│   └── requirements.txt            # Python dependencies
+│   └── requirements.txt            # Python dependencies (includes greenlet)
 ├── docker/
 │   └── docker-compose.yml          # Postgres, Neo4j, Qdrant, MinIO, Redis
-├── frontend/                       # Next.js 14 Frontend Application
+├── frontend/                       # Next.js 14 Frontend Application (SarvOSINT)
 │   ├── src/
 │   │   ├── app/                    # Next.js App Router Pages
 │   │   │   ├── page.tsx            # Executive Dashboard & Metrics
@@ -155,7 +155,7 @@ Sarvam_Project/
 │   │   │   ├── signals/page.tsx    # Weak-Signal anomaly feed & scores
 │   │   │   ├── verification/page.tsx# HITL verification queue & audit log
 │   │   │   ├── reports/page.tsx    # Automated brief generator with citations
-│   │   │   └── layout.tsx          # Global layout & tactical workbench chrome
+│   │   │   └── layout.tsx          # Global layout & SarvOSINT tactical chrome
 │   │   ├── components/             # Reusable UI widgets (Navbar, Sidebar)
 │   │   └── lib/api.ts              # Typed API client interfacing with backend
 │   ├── package.json
@@ -165,6 +165,7 @@ Sarvam_Project/
 │   ├── test_backend.py             # Standalone sanity test for DB, Graph & Signals
 │   └── test_e2e_workflow.py        # End-to-end integration test (Ingest -> Verify -> Report)
 ├── main.py                         # Minimal Sarvam AI chat completion verification script
+├── requirements.txt                # Root requirements pointer for cloud platforms
 ├── .env                            # Environment variables (git-ignored)
 └── .gitignore
 ```
@@ -191,7 +192,7 @@ SARVAM_API_KEY=your_sarvam_api_key_here
 # SARVAM_API_KEY2=second_key_here
 
 # Security
-JWT_SECRET_KEY=fusion-workbench-super-secure-jwt-key-2026
+JWT_SECRET_KEY=sarvosint-super-secure-jwt-key-2026
 
 # Database (Defaults to SQLite if PostgreSQL is not active)
 DATABASE_URL=sqlite+aiosqlite:///./osint_workbench.db
@@ -238,7 +239,9 @@ source venv/bin/activate
 pip install -r backend/requirements.txt
 
 # Run the backend server with auto-reload
-uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+# Or from repo root:
+# uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 - **API Base URL**: `http://localhost:8000`
@@ -343,4 +346,3 @@ python tests/test_e2e_workflow.py
 ## 📜 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-

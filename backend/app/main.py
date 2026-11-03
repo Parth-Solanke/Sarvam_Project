@@ -17,12 +17,12 @@ from app.core.seeder import seed_initial_data
 from app.api.v1.router import api_router
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
-logger = logging.getLogger("osint.main")
+logger = logging.getLogger("sarvosint.main")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup sequence
-    logger.info("Initializing OSINT Fusion Workbench Backend...")
+    logger.info("Initializing SarvOSINT Backend...")
     await init_db()
     await graph_store.connect()
     
@@ -39,12 +39,12 @@ async def lifespan(app: FastAPI):
     
     # Shutdown sequence
     await graph_store.close()
-    logger.info("OSINT Fusion Workbench Backend shutdown cleanly.")
+    logger.info("SarvOSINT Backend shutdown cleanly.")
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
-    description="Intelligence Community grade OSINT Fusion Workbench API with traceable knowledge graph and weak-signal analytics.",
+    description="Intelligence Community grade SarvOSINT API with traceable knowledge graph and weak-signal analytics.",
     lifespan=lifespan
 )
 
