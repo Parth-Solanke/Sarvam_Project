@@ -3,10 +3,10 @@ from datetime import datetime, timezone
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
-from backend.app.models.sql.models import User, Source
-from backend.app.core.security import hash_password
-from backend.app.models.schemas.schemas import SourceIngestRequest
-from backend.app.api.v1.sources import ingest_source
+from app.models.sql.models import User, Source
+from app.core.security import hash_password
+from app.models.schemas.schemas import SourceIngestRequest
+from app.api.v1.sources import ingest_source
 
 SAMPLE_INTELLIGENCE = [
     {

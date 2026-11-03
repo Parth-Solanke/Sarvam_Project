@@ -4,13 +4,13 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
 
-from backend.app.core.database import get_db, graph_store
-from backend.app.models.sql.models import (
+from app.core.database import get_db, graph_store
+from app.models.sql.models import (
     ExtractedEntity, EntityMention, ExtractedRelationship, ExtractionEvidence, Source, User
 )
-from backend.app.models.schemas.schemas import EntityResponse, EntityResolveRequest
-from backend.app.api.v1.auth import get_current_user
-from backend.app.services.verification.workflow import verification_service
+from app.models.schemas.schemas import EntityResponse, EntityResolveRequest
+from app.api.v1.auth import get_current_user
+from app.services.verification.workflow import verification_service
 
 router = APIRouter(prefix="/entities", tags=["Entity Intelligence & Profiles"])
 

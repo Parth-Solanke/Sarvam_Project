@@ -4,10 +4,10 @@ from typing import Dict, Any, Optional
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, update
 
-from backend.app.models.sql.models import (
+from app.models.sql.models import (
     AnalystReview, AuditLog, ExtractedEntity, ExtractedRelationship, SignalAnomaly
 )
-from backend.app.core.database import graph_store
+from app.core.database import graph_store
 
 class VerificationService:
     async def record_decision(

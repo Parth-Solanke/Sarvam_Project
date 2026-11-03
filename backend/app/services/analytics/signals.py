@@ -4,7 +4,7 @@ from typing import List, Dict, Any
 from collections import defaultdict
 import networkx as nx
 
-from backend.app.core.database import graph_store
+from app.core.database import graph_store
 
 class WeakSignalEngine:
     def __init__(self):

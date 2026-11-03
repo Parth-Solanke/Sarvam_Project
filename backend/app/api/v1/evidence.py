@@ -2,9 +2,9 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
-from backend.app.core.database import get_db
-from backend.app.models.sql.models import ExtractionEvidence, ExtractedRelationship, Source
-from backend.app.models.schemas.schemas import EvidenceResponse
+from app.core.database import get_db
+from app.models.sql.models import ExtractionEvidence, ExtractedRelationship, Source
+from app.models.schemas.schemas import EvidenceResponse
 
 router = APIRouter(prefix="/evidence", tags=["Provenance & Verifiable Evidence"])
 

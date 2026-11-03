@@ -1,12 +1,20 @@
+import sys
 import logging
+from pathlib import Path
 from contextlib import asynccontextmanager
+
+# Ensure backend root directory is in sys.path regardless of execution directory
+backend_dir = str(Path(__file__).resolve().parent.parent)
+if backend_dir not in sys.path:
+    sys.path.insert(0, backend_dir)
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend.app.core.config import settings
-from backend.app.core.database import init_db, graph_store, async_session_maker
-from backend.app.core.seeder import seed_initial_data
-from backend.app.api.v1.router import api_router
+from app.core.config import settings
+from app.core.database import init_db, graph_store, async_session_maker
+from app.core.seeder import seed_initial_data
+from app.api.v1.router import api_router
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 logger = logging.getLogger("osint.main")

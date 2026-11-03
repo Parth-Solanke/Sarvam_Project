@@ -3,9 +3,11 @@ from pathlib import Path
 from typing import List
 from pydantic_settings import BaseSettings
 
-# Locate project root .env
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
-ENV_FILE = PROJECT_ROOT / ".env"
+# Locate backend dir and repo root
+BACKEND_DIR = Path(__file__).resolve().parent.parent.parent
+REPO_ROOT = BACKEND_DIR.parent
+
+ENV_FILE = BACKEND_DIR / ".env" if (BACKEND_DIR / ".env").exists() else REPO_ROOT / ".env"
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "OSINT Fusion Workbench"
@@ -27,10 +29,11 @@ class Settings(BaseSettings):
     NEO4J_PASSWORD: str = os.getenv("NEO4J_PASSWORD", "fusion_neo4j_2026")
     
     # Storage
-    STORAGE_DIR: str = str(PROJECT_ROOT / "storage_data")
+    STORAGE_DIR: str = str(BACKEND_DIR / "storage_data")
     
     # CORS
     CORS_ORIGINS: List[str] = [
+        "*",
         "http://localhost:3000",
         "http://127.0.0.1:3000",
         "http://localhost:8000",
@@ -45,4 +48,3 @@ settings = Settings()
 
 # Ensure local storage directory exists
 Path(settings.STORAGE_DIR).mkdir(parents=True, exist_ok=True)
-

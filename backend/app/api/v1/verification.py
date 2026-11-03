@@ -4,15 +4,15 @@ from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
-from backend.app.core.database import get_db
-from backend.app.models.sql.models import (
+from app.core.database import get_db
+from app.models.sql.models import (
     ExtractedEntity, ExtractedRelationship, ExtractionEvidence, AuditLog, User
 )
-from backend.app.models.schemas.schemas import (
+from app.models.schemas.schemas import (
     VerificationDecisionRequest, AuditLogResponse
 )
-from backend.app.api.v1.auth import get_current_user
-from backend.app.services.verification.workflow import verification_service
+from app.api.v1.auth import get_current_user
+from app.services.verification.workflow import verification_service
 
 router = APIRouter(prefix="/verification", tags=["Human Analyst Verification & Audit"])
 

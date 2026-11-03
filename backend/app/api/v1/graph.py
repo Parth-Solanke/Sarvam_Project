@@ -1,8 +1,8 @@
 from typing import Optional, List
 from fastapi import APIRouter, Query, HTTPException
 
-from backend.app.core.database import graph_store
-from backend.app.models.schemas.schemas import GraphResponse
+from app.core.database import graph_store
+from app.models.schemas.schemas import GraphResponse
 
 router = APIRouter(prefix="/graph", tags=["Knowledge Graph Analytics"])
 

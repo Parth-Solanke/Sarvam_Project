@@ -4,7 +4,7 @@ import secrets
 from datetime import datetime, timedelta, timezone
 from typing import Optional, Any
 import jwt
-from backend.app.core.config import settings
+from app.core.config import settings
 
 def hash_password(password: str, salt: Optional[str] = None) -> str:
     """Hash password using PBKDF2-HMAC-SHA256 with cryptographically secure salt."""

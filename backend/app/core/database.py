@@ -5,8 +5,8 @@ import networkx as nx
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
 from neo4j import AsyncGraphDatabase, AsyncDriver
 
-from backend.app.core.config import settings
-from backend.app.models.sql.models import Base
+from app.core.config import settings
+from app.models.sql.models import Base
 
 logger = logging.getLogger("osint.database")
 
@@ -99,7 +99,7 @@ class HybridGraphStore:
 
     async def sync_from_database(self, db: AsyncSession):
         """Hydrate graph store from persistent relational storage."""
-        from backend.app.models.sql.models import ExtractedEntity, ExtractedRelationship, ExtractionEvidence, Source
+        from app.models.sql.models import ExtractedEntity, ExtractedRelationship, ExtractionEvidence, Source
         from sqlalchemy import select
         
         # Load Entities

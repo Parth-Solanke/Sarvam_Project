@@ -4,9 +4,9 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 
-from backend.app.core.database import get_db
-from backend.app.models.sql.models import SignalAnomaly
-from backend.app.services.analytics.signals import weak_signal_engine
+from app.core.database import get_db
+from app.models.sql.models import SignalAnomaly
+from app.services.analytics.signals import weak_signal_engine
 
 router = APIRouter(prefix="/signals", tags=["Weak-Signal & Anomaly Detection"])
 

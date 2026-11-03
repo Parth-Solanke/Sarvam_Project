@@ -1,7 +1,7 @@
 import re
 from typing import Tuple, List, Dict, Any
 from sarvamai import SarvamAI
-from backend.app.core.config import settings
+from app.core.config import settings
 
 INDIC_SCRIPTS = {
     "hi": (0x0900, 0x097F), # Devanagari (Hindi, Marathi)

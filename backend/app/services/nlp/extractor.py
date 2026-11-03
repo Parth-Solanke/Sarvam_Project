@@ -2,7 +2,7 @@ import json
 import re
 from typing import List, Dict, Any, Tuple
 from sarvamai import SarvamAI
-from backend.app.core.config import settings
+from app.core.config import settings
 
 class EntityExtractor:
     def __init__(self):

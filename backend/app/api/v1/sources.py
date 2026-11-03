@@ -6,15 +6,15 @@ from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form, s
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, func
 
-from backend.app.core.database import get_db, graph_store
-from backend.app.models.sql.models import (
+from app.core.database import get_db, graph_store
+from app.models.sql.models import (
     Source, SourceChunk, ExtractedEntity, EntityMention,
     ExtractedRelationship, ExtractionEvidence, AuditLog, User
 )
-from backend.app.models.schemas.schemas import SourceIngestRequest, SourceResponse, SourceDetailResponse
-from backend.app.services.nlp.multilingual import multilingual_service
-from backend.app.services.nlp.extractor import entity_extractor
-from backend.app.api.v1.auth import get_current_user
+from app.models.schemas.schemas import SourceIngestRequest, SourceResponse, SourceDetailResponse
+from app.services.nlp.multilingual import multilingual_service
+from app.services.nlp.extractor import entity_extractor
+from app.api.v1.auth import get_current_user
 
 router = APIRouter(prefix="/sources", tags=["Intelligence Ingestion & Sources"])
 

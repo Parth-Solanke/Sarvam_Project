@@ -9,12 +9,13 @@ if sys.stdout.encoding != "utf-8":
     except Exception:
         pass
 
-# Add project root to path
+# Add project root and backend to path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "backend"))
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from backend.app.core.database import init_db, graph_store, async_session_maker
-from backend.app.core.seeder import seed_initial_data
-from backend.app.services.analytics.signals import weak_signal_engine
+from app.core.database import init_db, graph_store, async_session_maker
+from app.core.seeder import seed_initial_data
+from app.services.analytics.signals import weak_signal_engine
 
 async def main():
     print("-> 1. Initializing DB Schema...")
