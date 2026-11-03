@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24  # 24 hours
     
     # Sarvam AI
-    SARVAM_API_KEY: str = os.getenv("SARVAM_API_KEY", "")
+    SARVAM_API_KEY: str = os.getenv("SARVAM_API_KEY") or os.getenv("SARVAM_API_KEY1") or os.getenv("SARVAM_API_KEY2") or ""
     
     # Databases
     DATABASE_URL: str = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./osint_workbench.db")

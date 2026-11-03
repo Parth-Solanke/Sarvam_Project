@@ -3,30 +3,104 @@
 @tailwind utilities;
 
 :root {
-  --background: #0B0E14;
-  --foreground: #E2E8F0;
+  /* Light Mode Design Tokens */
+  --wb-bg: #f8fafc;
+  --wb-surface: #ffffff;
+  --wb-panel: #f1f5f9;
+  --wb-panel-alt: #e2e8f0;
+  --wb-border: #e2e8f0;
+  --wb-border-subtle: #cbd5e1;
+  --wb-hover: #f1f5f9;
+  --wb-muted: #64748b;
+  --wb-text: #0f172a;
+  --wb-text-bright: #020617;
+  --wb-accent: #d97706; /* Ops Amber */
+  --wb-cyan: #0891b2;   /* Ops Cyan */
+  --wb-warning: #d97706;
+  --wb-danger: #dc2626;
+  --wb-success: #16a34a;
+  --wb-purple: #7c3aed;
+}
+
+.dark {
+  /* Dark "Ops Room" Design Tokens */
+  --wb-bg: #0a0d12;
+  --wb-surface: #10141b;
+  --wb-panel: #151b24;
+  --wb-panel-alt: #1c2430;
+  --wb-border: #222b38;
+  --wb-border-subtle: #2d394a;
+  --wb-hover: #1e2634;
+  --wb-muted: #8492a6;
+  --wb-text: #e2e8f0;
+  --wb-text-bright: #f8fafc;
+  --wb-accent: #f59e0b; /* Ops Amber */
+  --wb-cyan: #22d3ee;   /* Ops Cyan */
+  --wb-warning: #f59e0b;
+  --wb-danger: #ef4444;
+  --wb-success: #10b981;
+  --wb-purple: #a855f7;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  overflow-x: hidden;
+  color: var(--wb-text);
+  background: var(--wb-bg);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  user-select: none;
 }
 
 /* Custom intelligence scrollbars */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #0B0E14;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #262E3D;
-  border-radius: 3px;
+  background: var(--wb-border-subtle);
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #388BFD;
+  background: var(--wb-accent);
 }
 
+/* Cytoscape Canvas cursor */
+.cytoscape-container {
+  cursor: grab;
+}
+.cytoscape-container:active {
+  cursor: grabbing;
+}
+
+/* Verbatim highlights in bilingual reader */
+.verbatim-highlight {
+  background-color: rgba(245, 158, 11, 0.22);
+  border-bottom: 2px solid var(--wb-accent);
+  padding: 1px 3px;
+  border-radius: 3px;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+}
+.verbatim-highlight:hover,
+.verbatim-highlight.active {
+  background-color: rgba(245, 158, 11, 0.45);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.35);
+}
+
+/* Hash-chain timeline connector line */
+.hash-chain-line::before {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 36px;
+  bottom: -16px;
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--wb-border-subtle),
+    var(--wb-border-subtle) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}

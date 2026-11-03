@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
 import { Activity, Cpu, ShieldCheck, Sparkles } from "lucide-react";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export default function Navbar() {
   const [health, setHealth] = useState<any>({
@@ -18,7 +19,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="h-16 border-b border-workbench-border bg-workbench-surface px-6 flex items-center justify-between shrink-0">
+    <header className="h-16 border-b border-workbench-border bg-workbench-surface px-6 flex items-center justify-between shrink-0 transition-colors">
       <div className="flex items-center gap-4">
         <span className="text-xs font-mono font-medium text-workbench-muted">SYSTEM TELEMETRY</span>
         <div className="flex items-center gap-2 px-2.5 py-1 rounded bg-workbench-bg border border-workbench-border text-xs">
@@ -36,6 +37,7 @@ export default function Navbar() {
       </div>
 
       <div className="flex items-center gap-3">
+        <ThemeToggle />
         <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-workbench-success/15 border border-workbench-success/30 text-workbench-success text-[11px] font-mono">
           <ShieldCheck className="w-3.5 h-3.5" />
           <span>PROVENANCE VERIFIED</span>
@@ -47,4 +49,3 @@ export default function Navbar() {
     </header>
   );
 }
-

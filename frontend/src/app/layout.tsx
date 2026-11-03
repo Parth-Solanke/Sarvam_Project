@@ -1,10 +1,9 @@
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
-import Navbar from "@/components/Navbar";
+import ThemeInitializer from "@/components/ThemeInitializer";
 
 export const metadata = {
-  title: "SarvOSINT Workbench",
-  description: "Multilingual Multimodal Intelligence Analysis Platform powered by Sarvam AI",
+  title: "SarvOSINT — Investigation Workspace",
+  description: "Multilingual OSINT Fusion Platform powered by Sarvam AI",
 };
 
 export default function RootLayout({
@@ -13,15 +12,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className="bg-workbench-bg text-workbench-text min-h-screen flex antialiased">
-        <Sidebar />
-        <div className="flex-1 flex flex-col min-w-0 h-screen overflow-hidden">
-          <Navbar />
-          <main className="flex-1 overflow-y-auto p-6 bg-workbench-bg">
-            {children}
-          </main>
-        </div>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className="bg-workbench-bg text-workbench-text min-h-screen w-full antialiased transition-colors duration-200 select-none">
+        <ThemeInitializer />
+        {children}
       </body>
     </html>
   );

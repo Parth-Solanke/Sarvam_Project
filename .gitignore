@@ -7,3 +7,6 @@ storage_data/
 frontend/node_modules/
 frontend/.next/
 frontend/out/
+*.env*
+.env*
+.sarvam_key_index

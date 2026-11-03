@@ -56,6 +56,18 @@ class MultilingualService:
 
         if self.sarvam_client:
             try:
+                src_code = f"{source_lang}-IN" if len(source_lang) == 2 else "auto"
+                res = self.sarvam_client.text.translate(
+                    input=text,
+                    source_language_code=src_code,
+                    target_language_code="en-IN"
+                )
+                if res and getattr(res, "translated_text", None):
+                    return res.translated_text.strip(), 0.98
+            except Exception:
+                pass
+
+            try:
                 # Use Sarvam LLM for high-accuracy translation
                 response = self.sarvam_client.chat.completions(
                     model="sarvam-105b-conversations",

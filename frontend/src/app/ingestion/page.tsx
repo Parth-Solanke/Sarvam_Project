@@ -12,6 +12,7 @@ import {
   Sparkles,
   ArrowRight
 } from "lucide-react";
+import { SubpageHeader } from "@/components/SubpageHeader";
 
 export default function IngestionPage() {
   const router = useRouter();
@@ -72,171 +73,167 @@ export default function IngestionPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-xl font-bold text-workbench-text flex items-center gap-2">
-            <UploadCloud className="w-5 h-5 text-workbench-accent" />
-            <span>Intelligence Ingestion Hub</span>
-          </h2>
-          <p className="text-xs text-workbench-muted font-mono mt-0.5">
-            Ingest lawful multimodal intelligence, news dispatches, documents, and multilingual feeds.
-          </p>
+    <div className="min-h-screen bg-workbench-bg text-workbench-text overflow-y-auto">
+      <SubpageHeader
+        title="Intelligence Ingestion Hub"
+        subtitle="Ingest lawful multimodal intelligence, news dispatches, documents, and multilingual feeds"
+      />
+
+      <div className="max-w-4xl mx-auto px-6 pb-12 space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-sm font-bold text-workbench-text font-mono uppercase">
+              Ingest New Reporting
+            </h3>
+          </div>
+
+          {/* Quick Test Presets */}
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] font-mono text-workbench-muted">Load Preset:</span>
+            <button
+              type="button"
+              onClick={() => handlePreset("indic")}
+              className="px-2.5 py-1 rounded bg-workbench-surface border border-workbench-purple/40 text-[11px] font-mono text-workbench-purple hover:bg-workbench-hover"
+            >
+              🇮🇳 Indic Multilingual
+            </button>
+            <button
+              type="button"
+              onClick={() => handlePreset("english")}
+              className="px-2.5 py-1 rounded bg-workbench-surface border border-workbench-border text-[11px] font-mono text-workbench-text hover:bg-workbench-hover"
+            >
+              📄 Maritime Dispatch
+            </button>
+          </div>
         </div>
 
-        {/* Quick Test Presets */}
-        <div className="flex items-center gap-2">
-          <span className="text-[11px] font-mono text-workbench-muted">Load Preset:</span>
-          <button
-            type="button"
-            onClick={() => handlePreset("indic")}
-            className="px-2.5 py-1 rounded bg-workbench-surface border border-workbench-purple/40 text-[11px] font-mono text-workbench-purple hover:bg-workbench-hover"
-          >
-            🇮🇳 Indic Multilingual
-          </button>
-          <button
-            type="button"
-            onClick={() => handlePreset("english")}
-            className="px-2.5 py-1 rounded bg-workbench-surface border border-workbench-border text-[11px] font-mono text-workbench-text hover:bg-workbench-hover"
-          >
-            📄 Maritime Dispatch
-          </button>
-        </div>
-      </div>
+        {/* Main Ingestion Form */}
+        <form onSubmit={handleIngest} className="p-6 rounded-lg bg-workbench-surface border border-workbench-border space-y-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="md:col-span-2 space-y-1.5">
+              <label className="text-xs font-mono font-medium text-workbench-muted">Source Title / Reference *</label>
+              <input
+                type="text"
+                required
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="e.g. Maritime Alert: Vessel STS Activity Fujairah Anchorage"
+                className="w-full bg-workbench-panel border border-workbench-border rounded px-3 py-2 text-xs text-workbench-text focus:outline-none focus:border-workbench-accent font-mono"
+              />
+            </div>
 
-      {/* Main Ingestion Form */}
-      <form onSubmit={handleIngest} className="p-6 rounded-lg bg-workbench-surface border border-workbench-border space-y-5">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="md:col-span-2 space-y-1.5">
-            <label className="text-xs font-mono font-medium text-workbench-muted">Source Title / Reference *</label>
+            <div className="space-y-1.5">
+              <label className="text-xs font-mono font-medium text-workbench-muted">Source Classification</label>
+              <select
+                value={sourceType}
+                onChange={(e) => setSourceType(e.target.value)}
+                className="w-full bg-workbench-panel border border-workbench-border rounded px-3 py-2 text-xs text-workbench-text focus:outline-none focus:border-workbench-accent font-mono"
+              >
+                <option value="MANUAL_REPORT">Manual Report / Dispatch</option>
+                <option value="URL">Web URL / Crawled News</option>
+                <option value="PDF">PDF Intelligence Brief</option>
+                <option value="DOCX">DOCX Document</option>
+                <option value="AUDIO">Audio Transcription (STT)</option>
+                <option value="CSV">CSV / Tabular Dataset</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="space-y-1.5">
+            <label className="text-xs font-mono font-medium text-workbench-muted">Source URI / Provenance URL (Optional)</label>
             <input
               type="text"
-              required
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="e.g. Maritime Alert: Vessel STS Activity Fujairah Anchorage"
+              value={sourceUri}
+              onChange={(e) => setSourceUri(e.target.value)}
+              placeholder="https://... or file:///path/to/evidence.pdf"
               className="w-full bg-workbench-panel border border-workbench-border rounded px-3 py-2 text-xs text-workbench-text focus:outline-none focus:border-workbench-accent font-mono"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-mono font-medium text-workbench-muted">Source Classification</label>
-            <select
-              value={sourceType}
-              onChange={(e) => setSourceType(e.target.value)}
-              className="w-full bg-workbench-panel border border-workbench-border rounded px-3 py-2 text-xs text-workbench-text focus:outline-none focus:border-workbench-accent font-mono"
-            >
-              <option value="MANUAL_REPORT">Manual Report / Dispatch</option>
-              <option value="URL">Web URL / Crawled News</option>
-              <option value="PDF">PDF Intelligence Brief</option>
-              <option value="DOCX">DOCX Document</option>
-              <option value="AUDIO">Audio Transcription (STT)</option>
-              <option value="CSV">CSV / Tabular Dataset</option>
-            </select>
+            <div className="flex items-center justify-between">
+              <label className="text-xs font-mono font-medium text-workbench-muted">Intelligence Content (Raw Text / Non-English)</label>
+              <span className="text-[10px] font-mono text-workbench-accent flex items-center gap-1">
+                <Sparkles className="w-3 h-3" />
+                <span>Sarvam Indic AI Enabled</span>
+              </span>
+            </div>
+            <textarea
+              required
+              rows={7}
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              placeholder="Paste raw text, translated wire, or incident report..."
+              className="w-full bg-workbench-panel border border-workbench-border rounded p-3 text-xs text-workbench-text focus:outline-none focus:border-workbench-accent font-mono leading-relaxed"
+            />
           </div>
-        </div>
 
-        <div className="space-y-1.5">
-          <label className="text-xs font-mono font-medium text-workbench-muted">Source URI / Provenance URL (Optional)</label>
-          <input
-            type="text"
-            value={sourceUri}
-            onChange={(e) => setSourceUri(e.target.value)}
-            placeholder="https://... or file:///path/to/evidence.pdf"
-            className="w-full bg-workbench-panel border border-workbench-border rounded px-3 py-2 text-xs text-workbench-text focus:outline-none focus:border-workbench-accent font-mono"
-          />
-        </div>
+          {error && (
+            <div className="p-3 rounded bg-workbench-danger/15 border border-workbench-danger/30 text-workbench-danger text-xs flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 shrink-0" />
+              <span>{error}</span>
+            </div>
+          )}
 
-        <div className="space-y-1.5">
-          <div className="flex items-center justify-between">
-            <label className="text-xs font-mono font-medium text-workbench-muted">Intelligence Content (Raw Text / Non-English)</label>
-            <span className="text-[10px] font-mono text-workbench-accent flex items-center gap-1">
-              <Sparkles className="w-3 h-3" />
-              <span>Sarvam Indic AI Enabled</span>
+          <div className="flex items-center justify-between pt-2">
+            <span className="text-[11px] font-mono text-workbench-muted">
+              Cryptographic SHA-256 provenance is calculated on submission.
             </span>
+            <button
+              type="submit"
+              disabled={loading}
+              className="px-5 py-2 rounded bg-workbench-accent text-slate-950 text-xs font-bold font-mono hover:opacity-90 transition-all flex items-center gap-2 disabled:opacity-50"
+            >
+              {loading ? (
+                <span>Extracting & Syncing Graph...</span>
+              ) : (
+                <>
+                  <span>Execute Ingestion & Extraction</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </>
+              )}
+            </button>
           </div>
-          <textarea
-            required
-            rows={7}
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            placeholder="Paste raw text, translated wire, or incident report..."
-            className="w-full bg-workbench-panel border border-workbench-border rounded p-3 text-xs text-workbench-text focus:outline-none focus:border-workbench-accent font-mono leading-relaxed"
-          />
-        </div>
+        </form>
 
-        {error && (
-          <div className="p-3 rounded bg-workbench-danger/15 border border-workbench-danger/30 text-workbench-danger text-xs flex items-center gap-2">
-            <AlertCircle className="w-4 h-4 shrink-0" />
-            <span>{error}</span>
+        {/* Success Ingestion Result Preview */}
+        {result && (
+          <div className="p-5 rounded-lg bg-workbench-surface border border-workbench-success/40 space-y-3">
+            <div className="flex items-center gap-2 text-workbench-success text-sm font-semibold">
+              <CheckCircle className="w-4 h-4" />
+              <span>Source Ingested & Synchronized to Knowledge Graph Successfully</span>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs font-mono">
+              <div className="p-2.5 rounded bg-workbench-panel border border-workbench-border">
+                <span className="text-workbench-muted block text-[10px]">SOURCE ID</span>
+                <span className="text-workbench-text truncate block">{result.id}</span>
+              </div>
+              <div className="p-2.5 rounded bg-workbench-panel border border-workbench-border">
+                <span className="text-workbench-muted block text-[10px]">DETECTED LANG</span>
+                <span className="text-workbench-purple font-bold block">{result.original_language.toUpperCase()}</span>
+              </div>
+              <div className="p-2.5 rounded bg-workbench-panel border border-workbench-border">
+                <span className="text-workbench-muted block text-[10px]">STATUS</span>
+                <span className="text-workbench-success font-bold block">{result.status}</span>
+              </div>
+              <div className="p-2.5 rounded bg-workbench-panel border border-workbench-border">
+                <span className="text-workbench-muted block text-[10px]">CONTENT SHA-256</span>
+                <span className="text-workbench-text truncate block">{result.content_sha256.slice(0, 12)}...</span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 pt-2">
+              <button
+                onClick={() => router.push("/")}
+                className="px-3.5 py-1.5 rounded bg-workbench-accent text-slate-950 text-xs font-bold font-mono hover:opacity-90"
+              >
+                Inspect on Workspace Canvas →
+              </button>
+            </div>
           </div>
         )}
-
-        <div className="flex items-center justify-between pt-2">
-          <span className="text-[11px] font-mono text-workbench-muted">
-            Cryptographic SHA-256 provenance is calculated on submission.
-          </span>
-          <button
-            type="submit"
-            disabled={loading}
-            className="px-5 py-2 rounded bg-workbench-accent text-white text-xs font-semibold hover:bg-blue-600 transition-colors flex items-center gap-2 disabled:opacity-50"
-          >
-            {loading ? (
-              <span>Extracting & Syncing Graph...</span>
-            ) : (
-              <>
-                <span>Execute Ingestion & Extraction</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </>
-            )}
-          </button>
-        </div>
-      </form>
-
-      {/* Success Ingestion Result Preview */}
-      {result && (
-        <div className="p-5 rounded-lg bg-workbench-surface border border-workbench-success/40 space-y-3">
-          <div className="flex items-center gap-2 text-workbench-success text-sm font-semibold">
-            <CheckCircle className="w-4 h-4" />
-            <span>Source Ingested & Synchronized to Knowledge Graph Successfully</span>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs font-mono">
-            <div className="p-2.5 rounded bg-workbench-panel border border-workbench-border">
-              <span className="text-workbench-muted block text-[10px]">SOURCE ID</span>
-              <span className="text-workbench-text truncate block">{result.id}</span>
-            </div>
-            <div className="p-2.5 rounded bg-workbench-panel border border-workbench-border">
-              <span className="text-workbench-muted block text-[10px]">DETECTED LANG</span>
-              <span className="text-workbench-purple font-bold block">{result.original_language.toUpperCase()}</span>
-            </div>
-            <div className="p-2.5 rounded bg-workbench-panel border border-workbench-border">
-              <span className="text-workbench-muted block text-[10px]">STATUS</span>
-              <span className="text-workbench-success font-bold block">{result.status}</span>
-            </div>
-            <div className="p-2.5 rounded bg-workbench-panel border border-workbench-border">
-              <span className="text-workbench-muted block text-[10px]">CONTENT SHA-256</span>
-              <span className="text-workbench-text truncate block">{result.content_sha256.slice(0, 12)}...</span>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 pt-2">
-            <button
-              onClick={() => router.push("/graph")}
-              className="px-3.5 py-1.5 rounded bg-workbench-accent text-white text-xs font-semibold hover:bg-blue-600"
-            >
-              Inspect on Knowledge Graph →
-            </button>
-            <button
-              onClick={() => router.push("/verification")}
-              className="px-3.5 py-1.5 rounded bg-workbench-panel border border-workbench-border text-xs font-semibold text-workbench-text hover:bg-workbench-hover"
-            >
-              Review in Verification Desk →
-            </button>
-          </div>
-        </div>
-      )}
+      </div>
     </div>
   );
 }
-

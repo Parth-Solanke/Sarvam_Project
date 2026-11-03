@@ -190,4 +190,22 @@ export const api = {
     });
     return res.json();
   },
+
+  async translateText(data: {
+    text: string;
+    targetLanguageCode: string;
+    sourceLanguageCode?: string;
+  }): Promise<{
+    translated_text: string;
+    detected_source_language: string;
+    target_language_code: string;
+    status: string;
+  }> {
+    const res = await fetch("/api/translate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+    return res.json();
+  },
 };

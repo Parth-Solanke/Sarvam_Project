@@ -17,7 +17,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "recharts": "^2.13.3",
-    "tailwind-merge": "^2.5.4"
+    "tailwind-merge": "^2.5.4",
+    "zustand": "^5.0.16"
   },
   "devDependencies": {
     "@types/cytoscape": "^3.21.9",

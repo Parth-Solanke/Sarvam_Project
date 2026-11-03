@@ -10,26 +10,43 @@ module.exports = {
     extend: {
       colors: {
         workbench: {
-          bg: "#0B0E14",
-          surface: "#12161F",
-          panel: "#181E29",
-          border: "#262E3D",
-          hover: "#222A3A",
-          muted: "#6C7A92",
-          text: "#E2E8F0",
-          accent: "#388BFD",
-          warning: "#F0883E",
-          success: "#2EA043",
-          danger: "#F85149",
-          purple: "#A371F7",
-          cyan: "#39C5BB"
-        }
+          bg: "var(--wb-bg)",
+          surface: "var(--wb-surface)",
+          panel: "var(--wb-panel)",
+          panelAlt: "var(--wb-panel-alt)",
+          border: "var(--wb-border)",
+          borderSubtle: "var(--wb-border-subtle)",
+          hover: "var(--wb-hover)",
+          muted: "var(--wb-muted)",
+          text: "var(--wb-text)",
+          textBright: "var(--wb-text-bright)",
+          accent: "var(--wb-accent)",
+          cyan: "var(--wb-cyan)",
+          warning: "var(--wb-warning)",
+          danger: "var(--wb-danger)",
+          success: "var(--wb-success)",
+          purple: "var(--wb-purple)",
+        },
       },
       fontFamily: {
-        mono: ["JetBrains Mono", "Fira Code", "Courier New", "monospace"],
-      }
+        mono: ["JetBrains Mono", "Fira Code", "ui-monospace", "SFMono-Regular", "monospace"],
+        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+      },
+      animation: {
+        "pulse-subtle": "pulseSubtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "fade-in": "fadeIn 0.2s ease-in-out",
+      },
+      keyframes: {
+        pulseSubtle: {
+          "0%, 100%": { opacity: 1 },
+          "50%": { opacity: 0.6 },
+        },
+        fadeIn: {
+          from: { opacity: 0, transform: "scale(0.98)" },
+          to: { opacity: 1, transform: "scale(1)" },
+        },
+      },
     },
   },
   plugins: [],
 };
-

@@ -11,8 +11,68 @@ An Intelligence Community (IC) grade **Open-Source Intelligence (OSINT) Fusion P
 
 ---
 
+## 🔎 What is SarvOSINT?
+
+**SarvOSINT** is a unified investigation workspace built for intelligence analysts, national security researchers, maritime monitoring teams, and financial crime investigators. It bridges the critical gap between raw, multilingual public records (port logs, news dispatches, corporate registries, social communications) and verified, actionable intelligence.
+
+### The Core Problem It Solves
+1. **The Multilingual Blindspot**: Critical evidence in the Indian Ocean, South Asia, and regional trade corridors is published in regional Indian languages (Hindi, Marathi, Bengali, Tamil, etc.). Traditional tools either ignore these feeds or mistranslate domain-specific maritime/customs nomenclature.
+2. **The "Black Box" Problem**: Generic AI models hallucinate connections and cannot cite verifiable evidence. In intelligence, an unbacked claim is inadmissible. Every assertion in SarvOSINT is strictly pinned to character offsets (`[start:end]`) in the original document.
+3. **Fragmented Workflows**: Investigators are forced to jump between standalone translation tools, graph databases, entity spreadsheets, and document editors. SarvOSINT consolidates this into **one case workspace**.
+
+### How SarvOSINT Operates (The 6 Pillars)
+
+```
+[Raw Intelligence] (URLs, PDFs, Hindi/Indic texts, AIS reports)
+        │
+        ▼
+[1. Multilingual Ingestion & Fingerprinting]
+   • Detects Indic script (Devanagari, Bengali, Tamil, etc.)
+   • Preserves original text & computes SHA-256 tamper-evident hash
+   • Translates to English via Sarvam AI (sarvam-105b-conversations)
+        │
+        ▼
+[2. Knowledge Extraction & Character Offset Anchoring]
+   • Extracts Entities (VESSEL, ORGANIZATION, LOCATION, PERSON, EVENT)
+   • Extracts Relationships with exact quote spans [start:end]
+        │
+        ▼
+[3. Resilient Hybrid Knowledge Graph]
+   • Enterprise Neo4j database with automatic fallback to embedded NetworkX
+   • Visualizes how vessels, banks, and shell companies interconnect
+        │
+        ▼
+[4. Weak-Signal & Anomaly Radar]
+   • Pointwise Mutual Information (PMI): Detects anomalous entity co-occurrences
+   • Betweenness Centrality: Uncovers hidden broker hubs / intermediaries
+   • Louvain Modularity: Exposes covert illicit clusters
+        │
+        ▼
+[5. Human-in-the-Loop (HITL) Verification]
+   • Analysts approve, dispute, or reject assertions
+   • Records determinations in an immutable, tamper-evident Audit Log
+        │
+        ▼
+[6. Evidence-Backed Briefing Generator]
+   • Compiles intelligence briefs with clickable citation anchors [1], [2]
+   • Clicking any claim instantly highlights the exact verbatim quote
+```
+
+### Key Differentiators
+
+| Capability | Standard OSINT Tools | SarvOSINT |
+|---|---|---|
+| **Indic Multilingual AI** | English-only or basic machine translation | Native Sarvam AI integration supporting 10+ Indic scripts while strictly preserving technical terminology and entity names. |
+| **Strict Evidence Provenance** | Summaries without proof | Every assertion is tied to character offsets (`char_offset_start`, `char_offset_end`) in the source text. |
+| **Graph Redundancy** | Crashes if Neo4j is offline | Hybrid graph store: uses Neo4j if available, or automatically falls back to an embedded in-memory graph. |
+| **Statistical Anomaly Detection** | Manual inspection | Mathematical algorithms (PMI + Centrality) actively surface hidden patterns before analysts manually find them. |
+| **Analyst Accountability** | No audit trail | Cryptographic audit log tracking who approved/rejected each finding, timestamp, and rationale. |
+
+---
+
 ## 📑 Table of Contents
 
+- [What is SarvOSINT?](#-what-is-sarvosint)
 - [Key Features](#-key-features)
 - [System Architecture](#-system-architecture)
 - [Tech Stack](#-tech-stack)
