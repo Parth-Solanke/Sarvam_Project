@@ -1,4 +1,10 @@
-const API_BASE = "http://127.0.0.1:8000/api/v1";
+const BACKEND_URL = (
+  typeof process !== "undefined" && process.env.NEXT_PUBLIC_API_URL
+    ? process.env.NEXT_PUBLIC_API_URL
+    : "https://sarvam-project-mcwu.onrender.com"
+).replace(/\/+$/, "");
+
+export const API_BASE = `${BACKEND_URL}/api/v1`;
 
 export interface SourceItem {
   id: string;
@@ -99,7 +105,7 @@ export interface AuditRecord {
 
 export const api = {
   async getHealth() {
-    const res = await fetch("http://127.0.0.1:8000/health");
+    const res = await fetch(`${BACKEND_URL}/health`);
     return res.json();
   },
 
@@ -147,6 +153,11 @@ export const api = {
     return res.json();
   },
 
+  async scanSignals() {
+    const res = await fetch(`${API_BASE}/signals/scan`, { method: "POST" });
+    return res.json();
+  },
+
   async getVerificationQueue(): Promise<VerificationQueue> {
     const res = await fetch(`${API_BASE}/verification/queue`);
     return res.json();
@@ -180,4 +191,3 @@ export const api = {
     return res.json();
   },
 };
-

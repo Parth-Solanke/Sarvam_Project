@@ -26,9 +26,14 @@ export default function SignalsPage() {
 
   const handleScan = async () => {
     setScanning(true);
-    await fetch("http://127.0.0.1:8000/api/v1/signals/scan", { method: "POST" });
-    await fetchSignals();
-    setScanning(false);
+    try {
+      await api.scanSignals();
+      await fetchSignals();
+    } catch (err) {
+      console.error("Scan failed:", err);
+    } finally {
+      setScanning(false);
+    }
   };
 
   return (
@@ -120,4 +125,3 @@ export default function SignalsPage() {
     </div>
   );
 }
-
